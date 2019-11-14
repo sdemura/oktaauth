@@ -1,6 +1,14 @@
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+from future import standard_library
+standard_library.install_aliases()
+from builtins import *
+from builtins import object
 import requests
 import base64
-import urlparse
+import urllib.parse
 import logging
 from bs4 import BeautifulSoup
 log = logging.getLogger('oktaauth')
@@ -15,7 +23,7 @@ class OktaAPIAuth(object):
         self.passcode = passcode
         url_new = ('https', okta_server,
                    '', '', '','')
-        self.okta_url = urlparse.urlunparse(url_new)
+        self.okta_url = urllib.parse.urlunparse(url_new)
         return
 
     def okta_req(self, path, data):
