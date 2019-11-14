@@ -2,10 +2,13 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
+
 from future import standard_library
 standard_library.install_aliases()
+
 from builtins import *
 from builtins import object
+
 import requests
 import base64
 import urllib.parse
@@ -117,7 +120,7 @@ class OktaSamlAuth(OktaAPIAuth):
         if resp.status_code != 200:
             raise Exception('Received error code from server: %s' % resp.status_code)
 
-        return resp.text.decode('utf8')
+        return str(resp.text)
 
     def assertion(self, saml):
         assertion = ''
